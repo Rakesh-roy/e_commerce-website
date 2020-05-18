@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}
+    <div style="background-image: url({% static 'images/home-banner.jpg' %});background-position: center; background-size: contain; background-repeat: no-repeat">
+    <div style="height: 620px">
+    <form class="form-inline my-2" style="margin: 30%">
+      <input class="form-control" type="search" placeholder="Search Your Items..." style="font-size: 20px; width: 450px">
+      <button type="submit" style="border: none;background: none"><img src="{% static 'images/search.png' %}" style="width: 50px"></button>
+    </form>
+    </div>
+    </div>
+{% endblock %}

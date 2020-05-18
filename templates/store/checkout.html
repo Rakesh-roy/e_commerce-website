@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box-element" id="form-wrapper">
+                <form id="form">
+                    <div id="user-info">
+                        <div class="form-field">
+                            <input type="text" required class="form-control" name="name" placeholder="Name">
+                        </div>
+                        <div class="form-field">
+                            <input type="text" required class="form-control" name="email" placeholder="Email">
+                        </div>
+                    </div>
+
+                    <div id="shipping-info">
+                        <hr>
+                        <p>Shipping Information</p>
+                        <hr>
+                        <div class="form-field">
+                            <input type="text" required class="form-control" name="address" placeholder="Address">
+                        </div>
+                        <div class="form-field">
+                            <input type="text" required class="form-control" name="city" placeholder="City">
+                        </div><br>
+                        <div class="form-field">
+                            <input type="text" required class="form-control" name="state" placeholder="State">
+                        </div>
+                        <div class="form-field">
+                            <input type="text" required class="form-control" name="zipcode" placeholder="Zip Code">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
+                </form>
+            </div>
+            <br>
+            <div class="box-element hidden" id="payment-info">
+                <small>Paypal Options</small>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+            <div class="box-element">
+                <a href="{% url 'cart' %}" class="btn btn-outline-dark">&#x2190; Back to Cart</a>
+                <hr>
+                <h3>Order Summary</h3>
+                <hr>
+                {% for items in items %}
+                <div class="cart-row">
+                    <div style="flex: 2"><img src="{{ items.product.imageURL}}" class="row-image"></div>
+                    <div style="flex: 2"><p>{{ items.product.item_name }}</p></div>
+                    <div style="flex: 1"><p>${{ items.product.price }}</p></div>
+                    <div style="flex: 1"><p>X{{ items.quantity }}</p></div>
+                </div>
+                {% endfor %}
+
+                {% for orders in order %}
+                <h5>Items: {{ orders.cart_items }}</h5>
+                <h5>Total: ${{ orders.cart_total }}</h5>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
